@@ -85,9 +85,6 @@ h2{font-size:clamp(1.9rem,3.6vw,2.8rem);margin:8px 0 14px;font-weight:800}
 .story{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
 @media(max-width:820px){.story{grid-template-columns:1fr}}
 .story img{border-radius:24px;box-shadow:0 24px 50px rgba(11,22,48,.2)}
-.gal{columns:3 200px;column-gap:14px;margin-top:36px}
-.gal img{width:100%;border-radius:14px;margin-bottom:14px;transition:.3s}
-.gal img:hover{transform:scale(1.02)}
 .book{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center;background:linear-gradient(135deg,#fff3e0,#ffe3c2);border-radius:28px;padding:36px}
 @media(max-width:820px){.book{grid-template-columns:1fr}}
 .book img{border-radius:14px;box-shadow:0 14px 34px rgba(0,0,0,.2)}
@@ -186,12 +183,26 @@ footer a{color:#cdd6ee}
 .bk p{font-size:.92rem;color:#5a4630}
 .bk a{font-weight:700;color:var(--sea);font-size:.93rem}
 #ccta{margin-top:26px}
+
+.agenda{background:#eef6fb;padding:70px 0}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.legend span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:.86rem;color:var(--ink2)}
+.cal{background:#fff;border-radius:18px;padding:10px;box-shadow:0 14px 34px rgba(11,22,48,.1);overflow:hidden}
+.cal iframe{display:block;width:100%;height:600px;border:0;border-radius:10px}
+.agenda .acts{margin-top:22px}
+.mq{overflow:hidden;margin-top:40px;-webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.track{display:flex;width:max-content;animation:mq 95s linear infinite}
+.mq:hover .track{animation-play-state:paused}
+.track img{height:280px;width:auto;max-width:none;margin-right:14px;border-radius:14px}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media(max-width:620px){.track img{height:200px}.cal iframe{height:520px}}
+@media(prefers-reduced-motion:reduce){.track{animation:none}.mq{overflow-x:auto}}
 </style>
 </head>
 <body>
 <nav><div class="wrap">
   <a class="logo" href="#">Happy<b>sphere</b><small>Strategy · Kamel Abid</small></a>
-  <ul><li><a href="#entreprises" data-i="n1"></a></li><li><a href="#conferences" data-i="n2"></a></li><li><a href="#independants" data-i="n6"></a></li><li><a href="#test" data-i="n0"></a></li><li><a href="#kamel" data-i="n3"></a></li></ul>
+  <ul><li><a href="#entreprises" data-i="n1"></a></li><li><a href="#conferences" data-i="n2"></a></li><li><a href="#independants" data-i="n6"></a></li><li><a href="#agenda" data-i="n7"></a></li><li><a href="#test" data-i="n0"></a></li><li><a href="#kamel" data-i="n3"></a></li></ul>
   <div class="right">
     <div class="lang" role="group" aria-label="Language"><button data-l="fr">FR</button><button data-l="en">EN</button><button data-l="lb">LB</button></div>
     <a class="btn primary" href="https://calendly.com/happysphere/30min" data-i="book"></a>
@@ -257,6 +268,15 @@ footer a{color:#cdd6ee}
   <p id="ccta"><a class="btn primary" href="https://calendly.com/happysphere/30min" data-i="e_cta"></a></p>
 </div></section>
 
+<section id="agenda" class="agenda"><div class="wrap">
+  <div class="kicker" data-i="a_k"></div>
+  <h2 data-i="a_h"></h2>
+  <p class="sub" data-i="a_s"></p>
+  <div class="legend" id="legend"></div>
+  <div class="cal"><iframe id="cal" title="HappySphere Strategy Agenda" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
+  <div class="acts"><a class="btn primary" href="https://calendly.com/happysphere/30min" data-i="e_cta"></a></div>
+</div></section>
+
 <section class="quotes" style="padding:64px 0"><div class="wrap">
   <div class="kicker" data-i="q_k"></div>
   <h2 data-i="q_h"></h2>
@@ -305,10 +325,9 @@ footer a{color:#cdd6ee}
     <img src="img/kamel.jpg" alt="Kamel Abid" loading="lazy">
   </div>
   <div class="bk"><img src="img/cover.jpg" alt="Tous les mêmes ?" loading="lazy"><div><h3>« Tous les mêmes ? »</h3><p data-i="b_s"></p><a href="https://www.amazon.fr/Tous-m%C3%AAmes-Kamel-Abid/dp/1326898795" data-i="b_cta"></a></div></div>
-  <div class="gal">
-    <img src="img/impact.jpg" alt="" loading="lazy"><img src="img/room.jpg" alt="" loading="lazy"><img src="img/g3.jpg" alt="" loading="lazy"><img src="img/drums.jpg" alt="" loading="lazy"><img src="img/train2.jpg" alt="" loading="lazy"><img src="img/g5.jpg" alt="" loading="lazy"><img src="img/train3.jpg" alt="" loading="lazy">
   </div>
-</div></section>
+<div class="mq" id="mq"><div class="track" id="track"><img src="img/impact.jpg" alt=""><img src="img/room.jpg" alt=""><img src="img/drums.jpg" alt=""><img src="img/train1.jpg" alt=""><img src="img/g3.jpg" alt=""><img src="img/group.jpg" alt=""><img src="img/g5.jpg" alt=""><img src="img/train2.jpg" alt=""><img src="img/g4.jpg" alt=""><img src="img/train3.jpg" alt=""><img src="img/stage1.jpg" alt=""></div></div>
+</section>
 
 <section id="contact" class="final"><div class="wrap">
   <h2 data-i="f_h"></h2>
@@ -507,6 +526,13 @@ h_k:"Wien ass de Kamel?",h_h:"Zu Nice gebuer, zënter 2008 zu Lëtzebuerg",h_s:"
 b_s:"Dem Kamel säi Buch, op Franséisch. Op Amazon.fr, signéiert Exemplare op Ufro.",b_cta:"Op Amazon bestellen →",
 f_h:"Prett fir unzefänken?",f_p:"Drësseg Minutte fir iwwer Är Erausfuerderungen ze schwätzen. Ouni Engagement, oppen a vertraulech.",
 foot:"Maquette v4, inoffiziell, mat Inhalter vun deenen zwou aktuelle Säiten"});
+
+Object.assign(D.fr,{n7:"Agenda",a_k:"Agenda",a_h:"Prochaines sessions de formation",a_s:"Rejoignez une session ouverte, ou échangeons sur un programme adapté à votre organisation.",legend:["🟩 Session ouverte, inscription libre","🟦 Session privée, sur invitation","🟧 Session organisée par un partenaire","🟪 Secteur éducatif, inscription soumise à conditions"]});
+Object.assign(D.en,{n7:"Calendar",a_k:"Calendar",a_h:"Upcoming training sessions",a_s:"Join an open session, or let's talk about a programme adapted to your organisation.",legend:["🟩 Open session, free to register","🟦 Private session, by invitation","🟧 Session run by a partner","🟪 Education sector, registration subject to conditions"]});
+Object.assign(D.lb,{n7:"Agenda",a_k:"Agenda",a_h:"Nächst Formatiounssessiounen",a_s:"Maacht bei enger oppener Sessioun mat, oder schwätze mir iwwer e Programm, dee bei Är Organisatioun passt.",legend:["🟩 Oppe Sessioun, fräi Aschreiwung","🟦 Privat Sessioun, op Invitatioun","🟧 Sessioun vun engem Partner organiséiert","🟪 Educatiounssecteur, Aschreiwung ënner Konditiounen"]});
+const CAL_SRC='https://calendar.google.com/calendar/embed?wkst=2&ctz=Europe%2FBrussels&showPrint=0&title=HappySphere%20Strategy%20Agenda&showCalendars=0&showTz=0&showTabs=0&src=OG1iYjQwczYwZDZvOXRxY2RlOG0wbmkxYzBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23e67c73';
+function setCal(){const f=document.getElementById('cal'),u=CAL_SRC+'&hl='+(L==='en'?'en':'fr')+'&mode='+(innerWidth&&innerWidth<700?'AGENDA':'MONTH');if(f.dataset.u!==u){f.dataset.u=u;f.src=u}}
+(()=>{const t=document.getElementById('track');[...t.children].forEach(i=>{const c=i.cloneNode();c.setAttribute('aria-hidden','true');t.appendChild(c)})})();
 let G={i:0,a:[]};
 function renderGame(){
 const d=D[L],box=document.getElementById('game'),n=document.getElementById('needle');
@@ -527,6 +553,7 @@ const d=D[L];document.documentElement.lang=L;
 document.querySelectorAll('[data-i]').forEach(e=>{const v=d[e.dataset.i];if(v!==undefined)e.innerHTML=v});
 document.getElementById('prog').innerHTML=d.prog.map(p=>`<div class="pr"><b>${p[0]}</b><span>${p[1]}</span><em>${p[2]}</em></div>`).join('');
 document.getElementById('quotes').innerHTML=d.quotes.map(q=>`<blockquote>${q[0]}<cite>${q[1]}</cite></blockquote>`).join('');
+document.getElementById('legend').innerHTML=d.legend.map(x=>`<span>${x}</span>`).join('');setCal();
 document.getElementById('pills').innerHTML=d.pills.map(x=>`<span>${x}</span>`).join('');
 document.getElementById('topics').innerHTML=d.topics.map(x=>`<span>${x}</span>`).join('');
 document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===L));
