@@ -197,6 +197,17 @@ footer a{color:#cdd6ee}
 @keyframes mq{to{transform:translateX(-50%)}}
 @media(max-width:620px){.track img{height:200px}.cal iframe{height:520px}}
 @media(prefers-reduced-motion:reduce){.track{animation:none}.mq{overflow-x:auto}}
+
+.vid{position:relative;max-width:820px;margin:44px auto 0;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:var(--ink);box-shadow:0 22px 46px rgba(11,22,48,.22)}
+.vid button{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:none}
+.vid img{width:100%;height:100%;object-fit:cover}
+.vid button:after{content:"";position:absolute;inset:0;background:rgba(11,22,48,.28);transition:.2s}
+.vid button:hover:after{background:rgba(11,22,48,.12)}
+.vid i{position:absolute;z-index:1;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--sun);transition:.2s}
+.vid button:hover i{transform:scale(1.08)}
+.vid i:after{content:"";position:absolute;left:30px;top:22px;border-style:solid;border-width:16px 0 16px 25px;border-color:transparent transparent transparent #2a1700}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vidcap{text-align:center;color:var(--mut);font-size:.88rem;margin-top:10px}
 </style>
 </head>
 <body>
@@ -260,6 +271,8 @@ footer a{color:#cdd6ee}
     <div class="card"><div class="ic">🔄</div><h3 data-i="e2h"></h3><p data-i="e2p"></p></div>
     <div class="card"><div class="ic">🤝</div><h3 data-i="e3h"></h3><p data-i="e3p"></p></div>
   </div>
+  <div class="vid" id="vid"><button type="button" id="vidb"><img src="https://i.ytimg.com/vi/HqVqUZDNjO8/hqdefault.jpg" alt=""><i></i></button></div>
+  <p class="vidcap" data-i="vidcap"></p>
   <div class="prog"><h3 data-i="pg_h"></h3><div id="prog"></div></div>
   <div class="part">
     <div class="note"><h3 data-i="n1h"></h3><p data-i="n1p"></p></div>
@@ -533,6 +546,11 @@ Object.assign(D.lb,{n7:"Agenda",a_k:"Agenda",a_h:"Nächst Formatiounssessiounen"
 const CAL_SRC='https://calendar.google.com/calendar/embed?wkst=2&ctz=Europe%2FBrussels&showPrint=0&title=HappySphere%20Strategy%20Agenda&showCalendars=0&showTz=0&showTabs=0&src=OG1iYjQwczYwZDZvOXRxY2RlOG0wbmkxYzBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23e67c73';
 function setCal(){const f=document.getElementById('cal'),u=CAL_SRC+'&hl='+(L==='en'?'en':'fr')+'&mode='+(innerWidth&&innerWidth<700?'AGENDA':'MONTH');if(f.dataset.u!==u){f.dataset.u=u;f.src=u}}
 (()=>{const t=document.getElementById('track');[...t.children].forEach(i=>{const c=i.cloneNode();c.setAttribute('aria-hidden','true');t.appendChild(c)})})();
+
+Object.assign(D.fr,{vidcap:"Les formations pour entreprises en vidéo",vidl:"Lire la vidéo"});
+Object.assign(D.en,{vidcap:"Company training in a short video (in French)",vidl:"Play the video"});
+Object.assign(D.lb,{vidcap:"D'Formatioune fir Entreprisen als Video (op Franséisch)",vidl:"De Video ofspillen"});
+document.getElementById('vidb').onclick=()=>{document.getElementById('vid').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/HqVqUZDNjO8?autoplay=1&rel=0" title="HappySphere" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'};
 let G={i:0,a:[]};
 function renderGame(){
 const d=D[L],box=document.getElementById('game'),n=document.getElementById('needle');
@@ -553,7 +571,7 @@ const d=D[L];document.documentElement.lang=L;
 document.querySelectorAll('[data-i]').forEach(e=>{const v=d[e.dataset.i];if(v!==undefined)e.innerHTML=v});
 document.getElementById('prog').innerHTML=d.prog.map(p=>`<div class="pr"><b>${p[0]}</b><span>${p[1]}</span><em>${p[2]}</em></div>`).join('');
 document.getElementById('quotes').innerHTML=d.quotes.map(q=>`<blockquote>${q[0]}<cite>${q[1]}</cite></blockquote>`).join('');
-document.getElementById('legend').innerHTML=d.legend.map(x=>`<span>${x}</span>`).join('');setCal();
+document.getElementById('legend').innerHTML=d.legend.map(x=>`<span>${x}</span>`).join('');setCal();const vb=document.getElementById('vidb');if(vb)vb.setAttribute('aria-label',d.vidl);
 document.getElementById('pills').innerHTML=d.pills.map(x=>`<span>${x}</span>`).join('');
 document.getElementById('topics').innerHTML=d.topics.map(x=>`<span>${x}</span>`).join('');
 document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===L));
